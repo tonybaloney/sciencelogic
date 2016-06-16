@@ -15,7 +15,7 @@ ScienceLogic - a Python library for the ScienceLogic EM7 API
 
 Client library for sciencelogic EM7
 
-* Free software: ISC license
+* Free software: MIT license
 * Documentation: https://sciencelogic.readthedocs.org.
 
 Features

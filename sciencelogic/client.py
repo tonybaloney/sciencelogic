@@ -13,8 +13,8 @@ class Client(object):
         self.session.auth = HTTPBasicAuth(username, password)
         
         if auto_connect:
-            self.account = self._connect()
+            self.sysinfo = self._connect()
     
     def _connect(self):
-        r = self.session.get('%s/%s' % (self.uri, 'api/account'))
+        r = self.session.get('%s/%s' % (self.uri, 'api/sysinfo'))
         return r.json()
