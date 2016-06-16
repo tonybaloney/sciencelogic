@@ -4,27 +4,27 @@ import matplotlib.pyplot as plt
 
 
 c = Client('jazz', 'hands!', 'https://au-monitoring.mcp-services.net/')
-print(c.sysinfo)
-print(c.devices())
 
+# API details
+print(c.sysinfo)
+
+
+# Get the first device
 d1 = c.devices()[0]
 
-d1._fill_details()
-
+# Get the details of the client
 print(d1.details)
 
+# Get a list of available performance counters
 counters = d1.performance_counters()
 print(counters)
 
+# Get historic performance data of the first counter
 data = counters[0].get_data()
 
-print(data)
-
+# Graph the data in matplotlib
 keys = []
 values = []
-
-
-
 for key, value in data.iteritems():
     keys.append(key)
     values.append(value)
