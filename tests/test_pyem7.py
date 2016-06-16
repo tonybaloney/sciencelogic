@@ -10,7 +10,7 @@ Tests for `pyem7` module.
 
 import unittest
 
-from pyem7 import pyem7
+from sciencelogic.client import Client
 
 
 class TestPyem7(unittest.TestCase):

@@ -28,5 +28,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: tonybaloney/pyem7
+    repo: tonybaloney/sciencelogic
     condition: $TOXENV == py27

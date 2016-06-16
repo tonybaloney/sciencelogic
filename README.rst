@@ -1,22 +1,22 @@
-===============================
-PythonEM7
-===============================
+============================================================
+ScienceLogic - a Python library for the ScienceLogic EM7 API
+============================================================
 
-.. image:: https://img.shields.io/pypi/v/pyem7.svg
-        :target: https://pypi.python.org/pypi/pyem7
+.. image:: https://img.shields.io/pypi/v/sciencelogic.svg
+        :target: https://pypi.python.org/pypi/sciencelogic
 
-.. image:: https://img.shields.io/travis/tonybaloney/pyem7.svg
-        :target: https://travis-ci.org/tonybaloney/pyem7
+.. image:: https://img.shields.io/travis/tonybaloney/sciencelogic.svg
+        :target: https://travis-ci.org/tonybaloney/sciencelogic
 
-.. image:: https://readthedocs.org/projects/pyem7/badge/?version=latest
-        :target: https://readthedocs.org/projects/pyem7/?badge=latest
+.. image:: https://readthedocs.org/projects/sciencelogic/badge/?version=latest
+        :target: https://readthedocs.org/projects/sciencelogic/?badge=latest
         :alt: Documentation Status
 
 
 Client library for sciencelogic EM7
 
 * Free software: ISC license
-* Documentation: https://pyem7.readthedocs.org.
+* Documentation: https://sciencelogic.readthedocs.org.
 
 Features
 --------

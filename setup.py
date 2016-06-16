@@ -23,23 +23,23 @@ test_requirements = [
 ]
 
 setup(
-    name='pyem7',
+    name='sciencelogic',
     version='0.1.0',
     description="Client library for sciencelogic EM7",
     long_description=readme + '\n\n' + history,
     author="Anthony Shaw",
     author_email='anthonyshaw@apache.org',
-    url='https://github.com/tonybaloney/pyem7',
+    url='https://github.com/tonybaloney/sciencelogic',
     packages=[
-        'pyem7',
+        'sciencelogic',
     ],
-    package_dir={'pyem7':
-                 'pyem7'},
+    package_dir={'sciencelogic':
+                 'sciencelogic'},
     include_package_data=True,
     install_requires=requirements,
     license="ISCL",
     zip_safe=False,
-    keywords='pyem7',
+    keywords='sciencelogic',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
