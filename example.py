@@ -9,7 +9,12 @@ c = Client('jazz', 'hands!', 'https://au-monitoring.mcp-services.net/')
 print(c.sysinfo)
 
 # Get the first device
-d1 = c.devices()[0]
+devices = c.devices()
+
+for d in devices:
+    print(d.details)
+
+d1 = devices[0]
 
 # Get the details of the client
 print(d1.details)

@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-test_pyem7
+test_sciencelogic
 ----------------------------------
 
-Tests for `pyem7` module.
+Tests for `sciencelogic` module.
 """
 
 import unittest
@@ -13,7 +13,7 @@ import unittest
 from sciencelogic.client import Client
 
 
-class TestPyem7(unittest.TestCase):
+class Testsciencelogic(unittest.TestCase):
 
     def setUp(self):
         pass

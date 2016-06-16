@@ -23,8 +23,8 @@ class Client(object):
     def get(self, uri):
         return self.session.get('%s/%s' % (self.uri, uri))
 
-    def devices(self):
-        cl = self.get('api/device')
+    def devices(self, details=False):
+        cl = self.get('api/device%s' % '?extended_fetch=1' if details else '')
         devices = []
         for r in cl.json()['result_set']:
             devices.append(Device(r['URI'], r['description'], self, True))
