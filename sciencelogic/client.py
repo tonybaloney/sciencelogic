@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 from requests.auth import HTTPBasicAuth
+from device import Device
 
 
 class Client(object):
@@ -16,5 +17,15 @@ class Client(object):
             self.sysinfo = self._connect()
     
     def _connect(self):
-        r = self.session.get('%s/%s' % (self.uri, 'api/sysinfo'))
+        r = self.get('api/sysinfo')
         return r.json()
+
+    def get(self, uri):
+        return self.session.get('%s/%s' % (self.uri, uri))
+
+    def devices(self):
+        cl = self.get('api/device')
+        devices = []
+        for r in cl.json()['result_set']:
+            devices.append(Device(r['URI'], r['description'], self))
+        return devices
