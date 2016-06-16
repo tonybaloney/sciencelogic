@@ -6,6 +6,21 @@ from device import Device
 
 class Client(object):
     def __init__(self, username, password, uri, auto_connect=True):
+        """
+        Instantiate a EM7 Client API
+        
+        :param username: Your username
+        :type  username: ``str``
+        
+        :param password: Your password
+        :type  password: ``str``
+        
+        :param uri: The EM7 URI (excluding the /api)
+        :param uri: ``str``
+        
+        :param auto_connect: Try an connect and get API data when initializing
+        :param auto_connect: ``bool``
+        """
         self.username = username
         self.password = password
         self.uri = uri
@@ -20,12 +35,20 @@ class Client(object):
         r = self.get('api/sysinfo')
         return r.json()
 
-    def get(self, uri):
-        return self.session.get('%s/%s' % (self.uri, uri))
+    def get(self, uri, params={}):
+        return self.session.get('%s/%s' % (self.uri, uri), params=params)
 
     def devices(self, details=False):
-        cl = self.get('api/device%s' % '?extended_fetch=1' if details else '')
+        """
+        Get a list of devices
+        
+        :param details: Get the details of the devices
+        :type  details: ``bool``
+        
+        :rtype: ``list`` of :class:`Device`
+        """
+        cl = self.get('api/device', {'extended_fetch': 1} if details else {})
         devices = []
-        for r in cl.json()['result_set']:
-            devices.append(Device(r['URI'], r['description'], self, True))
+        for uri, r in cl.json()['result_set'].items():
+            devices.append(Device(r, uri, self, True))
         return devices

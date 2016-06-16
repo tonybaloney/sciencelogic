@@ -9,12 +9,16 @@ c = Client('jazz', 'hands!', 'https://au-monitoring.mcp-services.net/')
 print(c.sysinfo)
 
 # Get the first device
-devices = c.devices()
+devices = c.devices(details=True)
 
 for d in devices:
     print(d.details)
 
-d1 = devices[0]
+# Custom attribute
+target_server_id = '56a20d29-95cc-46b8-b43c-41a96be18ace'
+
+# Match by custom attribute
+d1 = [device for device in devices if device.details['c-server-id'] == target_server_id ][0]
 
 # Get the details of the client
 print(d1.details)

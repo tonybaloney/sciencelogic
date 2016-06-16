@@ -18,10 +18,17 @@ Client library for sciencelogic EM7
 * Free software: MIT license
 * Documentation: https://sciencelogic.readthedocs.org.
 
-Features
+Usage
 --------
 
-* TODO
+To use Python EM7 in a project::
+    from sciencelogic.client import Client
+
+    
+    c = Client('jazz', 'hands!', 'https://au-monitoring.mcp-services.net/')
+    
+    # API details
+    print(c.sysinfo)
 
 Credits
 ---------
