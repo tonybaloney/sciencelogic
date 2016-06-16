@@ -27,5 +27,5 @@ class Client(object):
         cl = self.get('api/device')
         devices = []
         for r in cl.json()['result_set']:
-            devices.append(Device(r['URI'], r['description'], self))
+            devices.append(Device(r['URI'], r['description'], self, True))
         return devices

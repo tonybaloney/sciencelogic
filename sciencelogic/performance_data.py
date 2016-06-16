@@ -1,11 +1,19 @@
+from presentations import Presentation
+
+
 class PerformanceData(object):
     def __init__(self, client, options):
         self._client = client
         self.options = options
-        
-    def __repr__(self):
-        return "%s" % (self.options['appname'])
     
-    def get_data(self, hours=24):
-        d = self._client.get(self.options['presentations'][0]['data']['URI'])
-        return d.json()['data']['0']
+    def name(self):
+        return self.options['appname']
+    
+    def __repr__(self):
+        return "%s" % (self.name())
+    
+    def get_presentations(self):
+        return [Presentation(p, self._client) for p in self.options['presentations']]
+    
+    def get_presentation_data(self, presentation):
+        return presentation.get_data()
