@@ -3,6 +3,8 @@ from requests.auth import HTTPBasicAuth
 from sciencelogic.device import Device
 import requests
 
+requests.packages.urllib3.disable_warnings()
+
 
 class Client(object):
     def __init__(self, username, password, uri, auto_connect=True):
@@ -36,7 +38,9 @@ class Client(object):
         return r.json()
 
     def get(self, uri, params={}):
-        return self.session.get('%s/%s' % (self.uri, uri), params=params)
+        return self.session.get('%s/%s' % (self.uri, uri),
+                                params=params,
+                                verify=False)
 
     def devices(self, details=False):
         """
