@@ -39,7 +39,7 @@ class DeviceTestCase(unittest.TestCase):
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))
             m.get('https://test.com/api/device', text=self._load_fixture('fixtures/api_device_extended.json'))
             m.get('https://test.com/api/device/12345', text=self._load_fixture('fixtures/api_device_12345.json'))
-            m.get('https://test.com/api/device/12345/performance_data', text=self._load_fixture('fixtures/api_device_12345_performance_data.json'))
+            m.get('https://test.com/api/device/10857/performance_data', text=self._load_fixture('fixtures/api_device_12345_performance_data.json'))
             c = Client('my', 'test', 'https://test.com')
             device = c.get_device(12345)
             device.performance_counters()
