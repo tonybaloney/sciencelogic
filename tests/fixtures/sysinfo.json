@@ -1,0 +1,17 @@
+{
+  "release": "7.5.4.5 - Build 45945 - 2015-05-14 14:55:47",
+  "em7version": "7.5.4.5",
+  "em7build": "45945",
+  "em7build_ts": "1431629747",
+  "em7version_id": "70504045945",
+  "is_dev_sandbox": 0,
+  "entity_last_modified": {
+    "device_group": "1455804320",
+    "device_class": "1443040878",
+    "device_category": "1441133662",
+    "organization": "1466395344",
+    "itservice": "1441133653",
+    "event_policy": "1443040879",
+    "data_labels": "1443040876"
+  }
+}

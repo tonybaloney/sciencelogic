@@ -1,0 +1,943 @@
+{
+  "searchspec": {
+    "fields": [
+      "_id",
+      "active",
+      "alert_avail_and_latency_fail",
+      "auto_clear",
+      "auto_update",
+      "c-server-id",
+      "class_type",
+      "class_type/class",
+      "class_type/description",
+      "class_type/device_category/cat_name",
+      "class_type/device_category/guid",
+      "class_type/guid",
+      "collector_group",
+      "component_root_device",
+      "component_unique_id",
+      "critical_ping",
+      "daily_port_scan",
+      "dashboard",
+      "date_added",
+      "device_group",
+      "disable_asset_update",
+      "event_suppress_mask",
+      "hostname",
+      "ip",
+      "l3_topo",
+      "last_poll",
+      "log_all",
+      "merged_class_type/class",
+      "merged_class_type/description",
+      "merged_class_type/device_category/cat_name",
+      "merged_class_type/device_category/guid",
+      "merged_class_type/guid",
+      "name",
+      "organization",
+      "organization/company",
+      "preserve_hostname",
+      "scan_all_ips",
+      "snmp_cred_id",
+      "snmp_w_cred_id",
+      "state"
+    ],
+    "options": {
+      "hide_filterinfo": {
+        "type": "boolean",
+        "description": "Suppress filterspec and current filter info if 1 (true)",
+        "default": "0"
+      },
+      "limit": {
+        "type": "int",
+        "description": "Number of records to retrieve",
+        "default": "100"
+      },
+      "offset": {
+        "type": "int",
+        "description": "Specifies the index of the first returned resource within the entire result set",
+        "default": "0"
+      },
+      "extended_fetch": {
+        "type": "boolean",
+        "description": "Fetch entire resource if 1 (true), or resource link only if 0 (false)",
+        "default": "0"
+      },
+      "link_disp_field": {
+        "type": "enum",
+        "description": "When not using extended_fetch, this determines which field is used for the \"description\" of the resource link",
+        "default": "main.device",
+        "values": [
+          "c-server-id",
+          "state",
+          "last_poll",
+          "class_type/guid",
+          "class_type/class",
+          "class_type/description",
+          "class_type/device_category/guid",
+          "class_type/device_category/cat_name",
+          "merged_class_type/guid",
+          "merged_class_type/class",
+          "merged_class_type/description",
+          "merged_class_type/device_category/guid",
+          "merged_class_type/device_category/cat_name",
+          "organization/company",
+          "device_group",
+          "component_unique_id",
+          "component_root_device",
+          "name",
+          "ip",
+          "hostname",
+          "snmp_cred_id",
+          "snmp_w_cred_id",
+          "class_type",
+          "collector_group",
+          "active",
+          "organization",
+          "auto_update",
+          "event_suppress_mask",
+          "auto_clear",
+          "log_all",
+          "daily_port_scan",
+          "critical_ping",
+          "scan_all_ips",
+          "preserve_hostname",
+          "disable_asset_update",
+          "date_added",
+          "alert_avail_and_latency_fail",
+          "l3_topo",
+          "dashboard"
+        ]
+      }
+    }
+  },
+  "total_matched": 11,
+  "total_returned": 11,
+  "result_set": {
+    "/api/device/10857": {
+      "name": "AU9/kubernetes-master01",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 0,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1452646556",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "56a20d29-95cc-46b8-b43c-41a96be18ace",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "0",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/10857/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/10857/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/10857/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/10857/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/10857/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/10857/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/10857/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/10857/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/10857/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/10857/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13346": {
+      "name": "AU9/MyServer5",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402243",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "5eeabf12-968b-438f-960c-2349b6de6be4",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13346/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13346/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13346/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13346/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13346/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13346/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13346/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13346/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13346/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13346/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13347": {
+      "name": "AU9/MyServer6",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402243",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "96876f33-2fb1-4d72-97c1-709fded6c00e",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13347/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13347/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13347/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13347/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13347/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13347/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13347/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13347/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13347/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13347/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13348": {
+      "name": "AU9/MyServer8",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402247",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "4ded7c76-95ec-46e6-9bca-3e221694218d",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13348/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13348/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13348/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13348/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13348/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13348/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13348/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13348/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13348/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13348/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13349": {
+      "name": "AU9/MyServer7",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402247",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "8fcc007d-cc7d-4ac0-923c-9d2067c9cfc0",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13349/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13349/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13349/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13349/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13349/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13349/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13349/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13349/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13349/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13349/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13350": {
+      "name": "AU9/MyServer9",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402247",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "fe64655d-0810-4bd2-9ccb-27778736dd99",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13350/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13350/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13350/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13350/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13350/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13350/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13350/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13350/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13350/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13350/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13352": {
+      "name": "AU9/MyServer10",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402247",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "dcf36816-eaa6-4216-aa05-e3671fef373b",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13352/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13352/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13352/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13352/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13352/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13352/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13352/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13352/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13352/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13352/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13354": {
+      "name": "AU9/MyServer3",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402543",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "06e76f88-e66c-40ea-a4b9-b460fdd8fd2e",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13354/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13354/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13354/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13354/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13354/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13354/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13354/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13354/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13354/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13354/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/13355": {
+      "name": "AU9/MyServer4",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/5",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1459402544",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "6e60b9f5-f9a5-4550-8cfc-43f065761936",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/13355/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/13355/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/13355/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/13355/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/13355/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/13355/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/13355/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/13355/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/13355/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/13355/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/17477": {
+      "name": "AU10/MyServer",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/6",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1465187426",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "b47d9860-fc0a-4619-ad7f-0a6e7e30fb54",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/17477/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/17477/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/17477/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/17477/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/17477/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/17477/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/17477/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/17477/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/17477/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/17477/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    },
+    "/api/device/17851": {
+      "name": "AU10/WebServer",
+      "ip": "",
+      "hostname": null,
+      "snmp_cred_id": "/api/credential/snmp/0",
+      "snmp_w_cred_id": null,
+      "class_type": "/api/device_class/3545",
+      "collector_group": "/api/collector_group/6",
+      "active": {
+        "user-disabled": 0,
+        "unavailable": 1,
+        "maintenance": 0,
+        "system-disabled": 0,
+        "user-initiated-maintenance": 0
+      },
+      "organization": "/api/organization/43",
+      "auto_update": "1",
+      "event_suppress_mask": "00:00:00",
+      "auto_clear": "1",
+      "log_all": "1",
+      "daily_port_scan": "1",
+      "critical_ping": "0",
+      "scan_all_ips": "0",
+      "preserve_hostname": "1",
+      "disable_asset_update": "0",
+      "date_added": "1465530950",
+      "alert_avail_and_latency_fail": "0",
+      "l3_topo": null,
+      "dashboard": null,
+      "c-server-id": "416dff33-e7e0-4132-a576-77b9ae1de65d",
+      "last_poll": null,
+      "parent_device": null,
+      "state": "3",
+      "child_devices": [],
+      "notes": {
+        "URI": "/api/device/17851/note/?hide_filterinfo=1&limit=1000",
+        "description": "Notes"
+      },
+      "logs": {
+        "URI": "/api/device/17851/log/?hide_filterinfo=1&limit=1000",
+        "description": "Logs"
+      },
+      "applications": {
+        "URI": "/api/device/17851/aligned_app",
+        "description": "Aligned Dynamic Applications"
+      },
+      "performance_data": {
+        "URI": "/api/device/17851/performance_data",
+        "description": "Collected Performance Dynamic App Data"
+      },
+      "config_data": {
+        "URI": "/api/device/17851/config_data",
+        "description": "Collected Config Dynamic App Data"
+      },
+      "vitals": {
+        "URI": "/api/device/17851/vitals",
+        "description": "Component-mapped (CPU/MEM/FS) Performance App Data and Availability/Latency Data"
+      },
+      "interfaces": {
+        "URI": "/api/device/17851/interface?limit=1000",
+        "description": "Index of interfaces for a device"
+      },
+      "thresholds": {
+        "URI": "/api/device/17851/device_thresholds",
+        "description": "Current device threshold values"
+      },
+      "details": {
+        "URI": "/api/device/17851/detail",
+        "description": "Current device details"
+      },
+      "app_credentials": {
+        "URI": "/api/device/17851/device_app_credentials",
+        "description": "Read-only lookup for aligned credentials and the device-aligned apps that are using them"
+      }
+    }
+  }
+}

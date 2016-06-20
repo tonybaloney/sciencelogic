@@ -2,7 +2,7 @@ from performance_data import PerformanceData
 
 
 class Device(object):
-    def __init__(self, device, uri, client, has_details=False):
+    def __init__(self, device, uri, client, has_details=False, fetch_details=False):
         """
         Instantiate a new Device object
         
@@ -19,7 +19,7 @@ class Device(object):
             self.description = device['name']
         else:
             self.description = device['description']
-        if not has_details:
+        if not has_details and fetch_details:
             self._fill_details()
         else:
             self.details = device

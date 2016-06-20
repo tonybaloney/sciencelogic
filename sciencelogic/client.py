@@ -49,6 +49,10 @@ class Client(object):
         """
         cl = self.get('api/device', {'extended_fetch': 1} if details else {})
         devices = []
-        for uri, r in cl.json()['result_set'].items():
-            devices.append(Device(r, uri, self, True))
+        if details:
+            for uri, r in cl.json()['result_set'].items():
+                devices.append(Device(r, uri, self, True))
+        else:
+            for device in cl.json()['result_set']:
+                devices.append(Device(device, device['URI'], self, False))
         return devices
