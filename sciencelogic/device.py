@@ -15,6 +15,10 @@ class Device(object):
         """
         self._client = client
         self.uri = uri
+        
+        if not isinstance(device, dict):
+            raise TypeError("Device is not a valid dict")
+        
         if has_details:
             self.description = device['name']
         else:

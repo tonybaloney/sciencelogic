@@ -36,6 +36,8 @@ class Client(object):
         return r.json()
 
     def get(self, uri, params={}):
+        if uri.startswith('/'):
+            uri = uri[1:]
         return self.session.get('%s/%s' % (self.uri, uri), params=params)
 
     def devices(self, details=False):
@@ -56,3 +58,18 @@ class Client(object):
             for device in cl.json()['result_set']:
                 devices.append(Device(device, device['URI'], self, False))
         return devices
+
+    def get_device(self, device_id):
+        """
+        Get a devices
+        
+        :param device_id: The id of the device
+        :type  device_id: ``int``
+        
+        :rtype: ``list`` of :class:`Device`
+        """
+        if not isinstance(device_id, int):
+            raise TypeError('Device ID must be integer')
+        uri = 'api/device/%s' % device_id
+        r = self.session.get('%s/%s' % (self.uri, uri)).json()
+        return Device(r, uri, self, True)
