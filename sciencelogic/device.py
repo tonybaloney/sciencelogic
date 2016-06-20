@@ -2,7 +2,12 @@ from sciencelogic.performance_data import PerformanceData
 
 
 class Device(object):
-    def __init__(self, device, uri, client, has_details=False, fetch_details=False):
+    """
+    Represents a monitored device
+    """
+
+    def __init__(self, device, uri, client,
+                 has_details=False, fetch_details=False):
         """
         Instantiate a new Device object
 
@@ -15,10 +20,10 @@ class Device(object):
         """
         self._client = client
         self.uri = uri
-        
+
         if not isinstance(device, dict):
             raise TypeError("Device is not a valid dict")
-        
+
         if has_details:
             self.description = device['name']
         else:
@@ -35,8 +40,8 @@ class Device(object):
         """
         Get the detailed information about the device
         """
-        d = self._client.get(self.uri)
-        self.details = d.json()
+        device = self._client.get(self.uri)
+        self.details = device.json()
 
     def performance_counters(self):
         """
@@ -47,7 +52,7 @@ class Device(object):
         if self.details is None:
             self._fill_details()
         counters = []
-        u = self.details['performance_data']['URI']
-        for u_data in self._client.get(u).json()['result_set']:
+        uri = self.details['performance_data']['URI']
+        for u_data in self._client.get(uri).json()['result_set']:
             counters.append(PerformanceData(self._client, u_data))
         return counters

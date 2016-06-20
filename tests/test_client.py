@@ -19,11 +19,11 @@ class ClientTestCase(unittest.TestCase):
     def test_client_bad_param(self):
         with self.assertRaises(TypeError):
             c = Client('potato!')
-    
+
     def test_client_bad_values(self):
         with self.assertRaises(ValueError):
             c = Client('me','pass','potato!')
-    
+
     def test_format_get(self):
         with requests_mock.mock() as m:
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))
@@ -32,7 +32,7 @@ class ClientTestCase(unittest.TestCase):
             # prepended /
             info = c.get('/api/sysinfo').json()
             self.assertEquals(info['em7build'],'45945')
-    
+
     def test_get_devices_no_details(self):
         with requests_mock.mock() as m:
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))
@@ -40,7 +40,7 @@ class ClientTestCase(unittest.TestCase):
             c = Client('my', 'test', 'https://test.com')
             devices = c.devices(details=False)
             self.assertEquals(len(devices), 11)
-    
+
     def test_get_devices_details(self):
         with requests_mock.mock() as m:
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))

@@ -20,11 +20,11 @@ class DeviceTestCase(unittest.TestCase):
     def test_device_bad_param(self):
         with self.assertRaises(TypeError):
             c = Device('potato!')
-    
+
     def test_device_bad_values(self):
         with self.assertRaises(TypeError):
             c = Device('me','pass','potato!')
-    
+
     def test_get_device(self):
         with requests_mock.mock() as m:
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))
@@ -33,7 +33,7 @@ class DeviceTestCase(unittest.TestCase):
             c = Client('my', 'test', 'https://test.com')
             device = c.get_device(12345)
             self.assertEquals(device.details['name'], 'AU9/kubernetes-master01')
-    
+
     def test_get_device_counters(self):
         with requests_mock.mock() as m:
             m.get('https://test.com/api/sysinfo', text=self._load_fixture('fixtures/sysinfo.json'))

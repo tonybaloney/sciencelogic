@@ -1,5 +1,4 @@
 from sciencelogic.client import Client
-import time
 import matplotlib.pyplot as plt
 
 
@@ -18,7 +17,8 @@ for d in devices:
 target_server_id = '56a20d29-95cc-46b8-b43c-41a96be18ace'
 
 # Match by custom attribute
-d1 = [device for device in devices if device.details['c-server-id'] == target_server_id ][0]
+d1 = [device for device in devices
+      if device.details['c-server-id'] == target_server_id][0]
 
 # Get the details of the client
 print(d1.details)

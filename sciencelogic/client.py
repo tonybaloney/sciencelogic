@@ -7,7 +7,8 @@ requests.packages.urllib3.disable_warnings()
 
 
 class Client(object):
-    def __init__(self, username, password, uri, auto_connect=True, verify_ssl=False):
+    def __init__(self, username, password, uri,
+                 auto_connect=True, verify_ssl=False):
         """
         Instantiate a EM7 Client API
 
@@ -34,10 +35,21 @@ class Client(object):
             self.sysinfo = self._connect()
 
     def _connect(self):
-        r = self.get('api/sysinfo')
-        return r.json()
+        info = self.get('api/sysinfo')
+        return info.json()
 
-    def get(self, uri, params={}):
+    def get(self, uri, params=None):
+        """
+        Get a URI from the API
+
+        :param uri: The URI
+        :type  uri: ``str``
+
+        :params params: Extra params
+        :type   params: ``dict``
+        """
+        if params is None:
+            params = {}
         if uri.startswith('/'):
             uri = uri[1:]
         return self.session.get('%s/%s' % (self.uri, uri),
@@ -53,27 +65,28 @@ class Client(object):
 
         :rtype: ``list`` of :class:`Device`
         """
-        cl = self.get('api/device', {'extended_fetch': 1} if details else {})
+        response = self.get('api/device', {'extended_fetch': 1}
+                            if details else {})
         devices = []
         if details:
-            for uri, r in cl.json()['result_set'].items():
-                devices.append(Device(r, uri, self, True))
+            for uri, device in response.json()['result_set'].items():
+                devices.append(Device(device, uri, self, True))
         else:
-            for device in cl.json()['result_set']:
+            for device in response.json()['result_set']:
                 devices.append(Device(device, device['URI'], self, False))
         return devices
 
     def get_device(self, device_id):
         """
         Get a devices
-        
+
         :param device_id: The id of the device
         :type  device_id: ``int``
-        
+
         :rtype: ``list`` of :class:`Device`
         """
         if not isinstance(device_id, int):
             raise TypeError('Device ID must be integer')
         uri = 'api/device/%s' % device_id
-        r = self.session.get('%s/%s' % (self.uri, uri)).json()
-        return Device(r, uri, self, True)
+        device = self.session.get('%s/%s' % (self.uri, uri)).json()
+        return Device(device, uri, self, True)
