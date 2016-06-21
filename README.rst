@@ -8,6 +8,9 @@ ScienceLogic - a Python library for the ScienceLogic EM7 API
 .. image:: https://img.shields.io/travis/tonybaloney/sciencelogic.svg
         :target: https://travis-ci.org/tonybaloney/sciencelogic
 
+.. image:: https://coveralls.io/repos/github/tonybaloney/sciencelogic/badge.svg?branch=master
+        :target: https://coveralls.io/github/tonybaloney/sciencelogic?branch=master
+
 .. image:: https://readthedocs.org/projects/sciencelogic/badge/?version=latest
         :target: https://readthedocs.org/projects/sciencelogic/?badge=latest
         :alt: Documentation Status
