@@ -1,4 +1,7 @@
 class Presentation(object):
+    """
+    A presentation of a monitor's data
+    """
     def __init__(self, presentation_dict, client):
         """
         Instantiate a new presentation of a performance counter
@@ -16,5 +19,5 @@ class Presentation(object):
 
         :rtype: ``dict``
         """
-        r = self._client.get(self.data_uri)
-        return r.json()['data'].get('0', {})
+        data = self._client.get(self.data_uri)
+        return data.json().get('data', {}).get('0', {})
