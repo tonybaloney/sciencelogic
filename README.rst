@@ -24,7 +24,10 @@ Client library for sciencelogic EM7
 Usage
 --------
 
-To use Python EM7 in a project::
+To use Python EM7 in a project
+
+.. code-block:: python
+
     from sciencelogic.client import Client
 
     
