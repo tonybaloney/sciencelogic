@@ -43,6 +43,55 @@ class Device(object):
         device = self._client.get(self.uri)
         self.details = device.json()
 
+    def get_logs(self,
+                 extended_fetch=0,
+                 hide_filter_info=1,
+                 link_disp_field=None,
+                 limit=1000,
+                 offset=None):
+        """
+        Get logs for this device
+
+        :param extended_fetch: Fetch entire resource if 1 (true), or resource
+            link only if 0 (false).
+        :type extended_fetch: ``bool``
+
+        :param hide_filter_info: Suppress filterspec and current filter info
+        :type hide_filter_info: ``bool``
+
+        :param link_disp_field: When not using extended_fetch, this determines
+            which field is used for the "description" of the resource link
+        :type link_disp_field: ``list``
+
+        :param limit: Number of records to retrieve
+        :type limit: ``int``
+
+        :param offset: Specifies the index of the first returned resource
+            within the entire result set
+        :type offset: ``int``
+
+        :rtype: ``list`` of ``dict``
+        """
+        params = {  # defaults
+            'extended_fetch': extended_fetch,
+            'hide_filter_info': hide_filter_info,
+        }
+        if link_disp_field is not None:
+            params['link_disp_field'] = ','.join(link_disp_field)
+
+        if limit:
+            params['limit'] = limit
+
+        if offset:
+            params['offset'] = offset
+
+        uri = self.details['logs']['URI']
+        data = self._client.get(uri).json()['result_set']
+        if extended_fetch:
+            return data.values()
+
+        return [self._client.get(item['URI']).json() for item in data]
+
     def performance_counters(self):
         """
         Get a list of performance counters for this device

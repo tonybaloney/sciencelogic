@@ -1,0 +1,44 @@
+{
+    "result_set": [
+        {
+            "URI": "/api/device/10857/log/88888",
+            "description": "Topology change: Parent DID changed from 444444 to 444445"
+        }
+    ],
+    "searchspec": {
+        "fields": [
+            "_id",
+            "date",
+            "event",
+            "event_policy",
+            "message",
+            "repeats",
+            "severity",
+            "source"
+        ],
+        "options": {"extended_fetch": {"default": "0",
+            "description": "Fetch entire resource if 1 (true), or resource link only if 0 (false)",
+            "type": "boolean"},
+        "hide_filterinfo": {"default": "0",
+            "description": "Suppress filterspec and current filter info if 1 (true)",
+            "type": "boolean"},
+        "limit": {"default": "100",
+            "description": "Number of records to retrieve",
+            "type": "int"},
+        "link_disp_field": {"default": "message",
+            "description": "When not using extended_fetch, this determines which field is used for the \"description\" of the resource link",
+            "type": "enum",
+            "values": ["severity",
+            "date",
+            "message",
+            "event_policy",
+            "source",
+            "event",
+            "repeats"]},
+        "offset": {"default": "0",
+            "description": "Specifies the index of the first returned resource within the entire result set",
+            "type": "int"}}
+    },
+    "total_matched": 821,
+    "total_returned": 1
+}
