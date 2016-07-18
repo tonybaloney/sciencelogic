@@ -1,6 +1,7 @@
 from sciencelogic.performance_data import PerformanceData
 
 
+
 class Device(object):
     """
     Represents a monitored device
@@ -86,7 +87,8 @@ class Device(object):
             params['offset'] = offset
 
         uri = self.details['logs']['URI']
-        data = self._client.get(uri).json()['result_set']
+        uri = uri[:uri.find('?')]
+        data = self._client.get(uri, params=params).json()['result_set']
         if extended_fetch:
             return data.values()
 
