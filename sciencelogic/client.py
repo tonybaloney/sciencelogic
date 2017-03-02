@@ -56,17 +56,20 @@ class Client(object):
                                 params=params,
                                 verify=self.verify)
 
-    def devices(self, details=False):
+    def devices(self, details=False, limit=100):
         """
         Get a list of devices
 
         :param details: Get the details of the devices
         :type  details: ``bool``
+        
+        :param limit: Number of devices to retrieve
+        :type details: ``int``
 
         :rtype: ``list`` of :class:`Device`
         """
-        response = self.get('api/device', {'extended_fetch': 1}
-                            if details else {})
+        response = self.get('api/device', {'extended_fetch': 1, 'limit': limit}
+                            if details else {'limit': limit})
         devices = []
         if details:
             for uri, device in response.json()['result_set'].items():
