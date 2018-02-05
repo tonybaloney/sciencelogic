@@ -56,20 +56,41 @@ class Client(object):
                                 params=params,
                                 verify=self.verify)
 
-    def devices(self, details=False, limit=100):
+    def devices(self, details=False, limit=100, offset=0, options=""):
         """
         Get a list of devices
 
         :param details: Get the details of the devices
         :type  details: ``bool``
-        
+
         :param limit: Number of devices to retrieve
         :type details: ``int``
 
+        :param offset: Skip first N devices
+        :type details: ``int``
+
+        :param options: Extra options to query
+        :type details: ``list`` of ``str``
+
         :rtype: ``list`` of :class:`Device`
         """
-        response = self.get('api/device', {'extended_fetch': 1, 'limit': limit}
-                            if details else {'limit': limit})
+        uri = 'api/device'
+        uri_separator = "?"
+        if isinstance(options, list):
+            for option in options:
+                if isinstance(option, str):
+                    uri += uri_separator + option
+                    uri_separator = "&"
+                else:
+                    raise TypeError('Options must be a list of strings.')
+        else:
+            raise TypeError('Options must be a list of strings.')
+        parameters = {'limit': limit}
+        if details:
+            parameters['extended_fetch'] = 1
+        if offset > 0:
+            parameters['offset'] = offset
+        response = self.get(uri, parameters)
         devices = []
         if details:
             for uri, device in response.json()['result_set'].items():
