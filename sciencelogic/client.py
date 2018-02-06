@@ -56,7 +56,7 @@ class Client(object):
                                 params=params,
                                 verify=self.verify)
 
-    def devices(self, details=False, limit=100, offset=0, options=""):
+    def devices(self, details=False, limit=100, offset=0, options=[]):
         """
         Get a list of devices
 
