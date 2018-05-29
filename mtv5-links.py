@@ -1,4 +1,5 @@
 from sciencelogic.client import Client
+import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import pprint
@@ -45,35 +46,26 @@ def collect_info(userid, password, hostname, dev_info):
                 # pprint.pprint(interface)
 
                 if 'normalized_hourly' in interface['interface_data']:
-                    int_perf_data['data'] = json.loads(
+                    temp_perf_data = json.loads(
                         c.get(interface['interface_data']['normalized_hourly']['URI']).text)
                 elif 'data' in interface['interface_data']:
-                    int_perf_data['data'] = json.loads(
+                    temp_perf_data = json.loads(
                         c.get(interface['interface_data']['data']['URI']).text)
-            if int_perf_data:
+
+                if temp_perf_data:
+                    int_perf_data['ints'] = {}
+                    for y in ["min", "max", "avg"]:
+                        int_perf_data[y] = pd.DataFrame(data={
+                            'time': [pd.to_datetime(x, unit='s') for x in temp_perf_data['data']['d_octets_in'][y]],
+                            'd_octets_in': [temp_perf_data['data']['d_octets_in'][y][x]
+                                            for x in temp_perf_data['data']['d_octets_in'][y]],
+                            'd_octets_out': [temp_perf_data['data']['d_octets_out'][y][x]
+                                             for x in temp_perf_data['data']['d_octets_out'][y]],
+                        })
+                        int_perf_data[y]["device"] = hostname + ":" + int_ref["description"]
                 dev_data['ints'].append(int_perf_data)
 
     return(dev_data)
-
-    # Get historic performance data of the first counter
-    data = counters[0].get_presentations()[0].get_data()
-
-    # Graph the data in matplotlib
-    keys = []
-    values = []
-    for key in data:
-        keys.append(key)
-        values.append(data[key])
-
-    plt.plot(keys, values)
-    plt.ylabel(counters[0].__repr__())
-    plt.show()
-
-    # Get some logs from the device.
-    logs = d.get_logs(extended_fetch=True)
-    for msg in logs:
-        print("{}".format(msg))
-
 
 def process_cmd_line():
     """
@@ -90,16 +82,21 @@ def process_cmd_line():
     device_info = {
         "sjc12-rbb-gw4": {
             "url": "https://central2.cisco.com",
-            "ints": ["Te2/14", "Te5/14"]
+            "ints": ["Te2/14", "Te5/14"],
+            "SwapDirection": False
         },
         "mtv5-mda2-sbb-gw2": {
             "url": "https://west2.cisco.com",
-            "ints": ["Te6/16", "Te7/5"]
+            "ints": ["Te6/16", "Te7/5"],
+            "SwapDirection": True
         }
     }
 
     for cur_device in device_info:
-        collect_info(args.Userid, args.password, cur_device, device_info[cur_device])
+        device_info[cur_device]['PerfData'] = collect_info(args.Userid, args.password,
+                                                           cur_device, device_info[cur_device])['ints']
+
+    print("Exiting")
 
 
 if __name__ == '__main__':
