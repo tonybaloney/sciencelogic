@@ -77,7 +77,20 @@ def process_cmd_line():
                          help="The Username to use.")
     options.add_argument("password",
                          help="The password.")
+    options.add_argument("outfile",
+                         help="The file to write to",)
+    options.add_argument("-c", "--create",
+                         action="store_true",
+                         help="Create the file, even if it exists.")
+    options.add_argument("-n", "--names",
+                         action="store_true",
+                         help="Write the column names (header row)")
     args = options.parse_args()
+
+    if args.create:
+        filemode = "w"
+    else:
+        filemode = "a"
 
     device_info = {
         "sjc12-rbb-gw4": {
@@ -95,6 +108,14 @@ def process_cmd_line():
     for cur_device in device_info:
         device_info[cur_device]['PerfData'] = collect_info(args.Userid, args.password,
                                                            cur_device, device_info[cur_device])['ints']
+
+    df_list = []
+    host_list = [device_info[host]['PerfData'] for host in device_info]
+    for int_list in host_list:
+        for int_data in int_list:
+            df_list.append(int_data['avg'])
+    df = pd.concat(df_list)
+    df.to_csv(args.outfile, mode=filemode, index=False, header=args.names)
 
     print("Exiting")
 
