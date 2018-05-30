@@ -1,8 +1,8 @@
 from sciencelogic.client import Client
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import json
-import pprint
+# import pprint
 from argparse import ArgumentParser
 
 
@@ -16,19 +16,20 @@ def collect_info(userid, password, hostname, dev_info):
     :param dev_info:
     :return:
     """
-    dev_data_list = []
+    dev_data = {}
     c = Client(userid, password, dev_info["url"])
 
     # Get the first device
+    # noinspection PyTypeChecker
     devices = c.devices(details=True, options=["filter.name.contains={}".format(hostname)])
-    print("Device details for {}:".format(hostname))
+    # print("Device details for {}:".format(hostname))
     for d in devices:
         dev_data = {
             'hostname': hostname,
             'ints': []
         }
         # print("device details:", d.details)
-        print(">", d.details['ip'])
+        # print(">", d.details['ip'])
         # pprint.pprint(d.details)
 
         int_resp = c.get(d.details['interfaces']['URI'])
@@ -36,12 +37,12 @@ def collect_info(userid, password, hostname, dev_info):
         for int_ref in int_list['result_set']:
             int_perf_data = {}
             if int_ref['description'] in dev_info["ints"]:
-                print(">>")
-                pprint.pprint(int_ref)
+                # print(">>")
+                # pprint.pprint(int_ref)
 
                 int_detail = c.get(int_ref['URI'])
                 interface = json.loads(int_detail.text)
-                print(">>>", interface['alias'], "/", interface['measure'])
+                # print(">>>", interface['alias'], "/", interface['measure'])
                 int_perf_data['int'] = int_ref['description']
                 # pprint.pprint(interface)
 
@@ -51,10 +52,13 @@ def collect_info(userid, password, hostname, dev_info):
                 elif 'data' in interface['interface_data']:
                     temp_perf_data = json.loads(
                         c.get(interface['interface_data']['data']['URI']).text)
+                else:
+                    temp_perf_data = []
 
                 if temp_perf_data:
                     int_perf_data['ints'] = {}
                     for y in ["min", "max", "avg"]:
+                        # noinspection PyTypeChecker
                         int_perf_data[y] = pd.DataFrame(data={
                             'time': [pd.to_datetime(x, unit='s') for x in temp_perf_data['data']['d_octets_in'][y]],
                             'd_octets_in': [temp_perf_data['data']['d_octets_in'][y][x]
@@ -65,7 +69,8 @@ def collect_info(userid, password, hostname, dev_info):
                         int_perf_data[y]["device"] = hostname + ":" + int_ref["description"]
                 dev_data['ints'].append(int_perf_data)
 
-    return(dev_data)
+    return dev_data
+
 
 def process_cmd_line():
     """
@@ -85,12 +90,29 @@ def process_cmd_line():
     options.add_argument("-n", "--names",
                          action="store_true",
                          help="Write the column names (header row)")
+    type_group = options.add_mutually_exclusive_group(required=False)
+    type_group.add_argument("--avg",
+                            action="store_true",
+                            help="Save average rate data (default)")
+    type_group.add_argument("--min",
+                            action="store_true",
+                            help="Save minimum rate data")
+    type_group.add_argument("-a", "--max",
+                            action="store_true",
+                            help="Save maximum rate data")
     args = options.parse_args()
 
     if args.create:
         filemode = "w"
     else:
         filemode = "a"
+
+    if args.min:
+        stat_type = "min"
+    elif args.max:
+        stat_type = "max"
+    else:
+        stat_type = "avg"
 
     device_info = {
         "sjc12-rbb-gw4": {
@@ -113,11 +135,12 @@ def process_cmd_line():
     host_list = [device_info[host]['PerfData'] for host in device_info]
     for int_list in host_list:
         for int_data in int_list:
-            df_list.append(int_data['avg'])
+            # noinspection PyTypeChecker
+            df_list.append(int_data[stat_type])
     df = pd.concat(df_list)
     df.to_csv(args.outfile, mode=filemode, index=False, header=args.names)
 
-    print("Exiting")
+    # print("Exiting")
 
 
 if __name__ == '__main__':
