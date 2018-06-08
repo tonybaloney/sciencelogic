@@ -56,7 +56,7 @@ def collect_info(userid, password, hostname, dev_info):
                     temp_perf_data = []
 
                 if temp_perf_data:
-                    int_perf_data['ints'] = {}
+                    int_perf_data['rate'] = int(interface['poll_rate']) * 60
                     for y in ["min", "max", "avg"]:
                         # noinspection PyTypeChecker
                         int_perf_data[y] = pd.DataFrame(data={
@@ -116,7 +116,7 @@ def process_cmd_line():
 
     device_info = {
         "sjc12-rbb-gw4": {
-            "url": "https://central2.cisco.com",
+            "url": "https://west2.cisco.com",
             "ints": ["Te2/14", "Te5/14"],
             "SwapDirection": False
         },
@@ -129,15 +129,18 @@ def process_cmd_line():
 
     for cur_device in device_info:
         device_info[cur_device]['PerfData'] = collect_info(args.Userid, args.password,
-                                                           cur_device, device_info[cur_device])['ints']
+                                                           cur_device, device_info[cur_device])#['ints']
 
     df_list = []
     host_list = [device_info[host]['PerfData'] for host in device_info]
     for int_list in host_list:
-        for int_data in int_list:
-            # noinspection PyTypeChecker
-            df_list.append(int_data[stat_type])
+        if int_list:
+            for int_data in int_list['ints']:
+                # noinspection PyTypeChecker
+                df_list.append(int_data[stat_type])
     df = pd.concat(df_list)
+    df.loc[:, 'd_octets_in'] = df.loc[:, 'd_octets_in'].astype('float64').div(int_data['rate'])
+    df.loc[:, 'd_octets_out'] = df.loc[:, 'd_octets_out'].astype('float64').div(int_data['rate'])
     df.to_csv(args.outfile, mode=filemode, index=False, header=args.names)
 
     # print("Exiting")
