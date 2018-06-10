@@ -7,6 +7,10 @@ from argparse import ArgumentParser
 import yaml
 
 
+returned_columns = ['time', 'device', 'interface', 'interface_speed',
+                    'sample_type', 'd_octets_in', 'd_octets_out']
+
+
 def get_host_data(connection:Client, hostname:str, host_info:dict) -> pd.DataFrame:
     """
     Given a dictionary defining the host info to get, and a connection to the
@@ -57,14 +61,18 @@ def get_host_data(connection:Client, hostname:str, host_info:dict) -> pd.DataFra
                                              for data_point in temp_performance_data['data']['d_octets_out'][performance_type]],
                         })
                         interface_performance_data["sample_type"] = performance_type
-                        interface_performance_data["interface_speed"] = int(interface['ifHighSpeed'])
-                        interface_performance_data["device"] = hostname + ":" + interface_description
+                        if 'ifHighSpeed' in interface:
+                            interface_performance_data["interface_speed"] = int(interface['ifHighSpeed']) * 1000000
+                        else:
+                            int(interface['ifSpeed'])
+                        interface_performance_data["device"] = hostname
+                        interface_performance_data["interface"] = interface_description
                         host_data.append(interface_performance_data)
 
     if host_data:
         return pd.concat(host_data)
     else:
-        return pd.DataFrame(data=[], columns=['time', 'd_octets_in', 'd_octets_out', 'sample_type', 'device'])
+        return pd.DataFrame(data=[], columns=returned_columns)
 
 
 def get_data_from_collector(collector_info:dict, userid:str, password:str) -> pd.DataFrame:
@@ -148,22 +156,8 @@ def process_cmd_line():
             all_host_data = host_data
         else:
             all_host_data = pd.concat([all_host_data, host_data])
-    all_host_data.loc[:, ['time', 'device' , 'sample_type', 'd_octets_in', 'd_octets_out']]\
+    all_host_data.loc[:, returned_columns]\
         .to_csv(args.outfile, mode=filemode, index=False, header=args.names)
-    exit(0)
-
-    df_list = []
-    host_list = [device_info[host]['PerfData'] for host in device_info]
-    for int_list in host_list:
-        for int_data in int_list:
-            # noinspection PyTypeChecker
-            df_list.append(int_data[stat_type])
-    df = pd.concat(df_list)
-    df.loc[:, 'd_octets_in'] = df.loc[:, 'd_octets_in'].astype('float64').div(int_data['rate'])
-    df.loc[:, 'd_octets_out'] = df.loc[:, 'd_octets_out'].astype('float64').div(int_data['rate'])
-    df.to_csv(args.outfile, mode=filemode, index=False, header=args.names)
-
-    # print("Exiting")
 
 
 if __name__ == '__main__':
