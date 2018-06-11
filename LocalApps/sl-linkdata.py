@@ -31,7 +31,7 @@ def get_host_data(connection:Client, hostname:str, host_info:dict) -> pd.DataFra
         for interface_reference in interface_list['result_set']:
             # print(interface_reference['description'], "=?=", host_info["interfaces"])
             if interface_reference['description'] in host_info["interfaces"]:
-                # print(">>")
+                print(">>", device, interface_reference['description'])
                 # pprint.pprint(int_ref)
 
                 interface_detail = connection.get(interface_reference['URI'])
@@ -90,6 +90,7 @@ def get_data_from_collector(collector_info:dict, userid:str, password:str) -> pd
         connection = Client(userid, password, collector_url)
         for device_info in collector_info[sl_collector]['hosts']:
             for hostname in device_info:
+                print(">", hostname)
                 host_data = get_host_data(connection, hostname, device_info[hostname])
                 if all_host_data is None:
                     all_host_data = host_data
@@ -125,7 +126,7 @@ def process_cmd_line():
     type_group.add_argument("--min",
                             action="store_true",
                             help="Save minimum rate data")
-    type_group.add_argument("-a", "--max",
+    type_group.add_argument("--max",
                             action="store_true",
                             help="Save maximum rate data")
     args = options.parse_args()
