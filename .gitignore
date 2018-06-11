@@ -61,5 +61,5 @@ target/
 example.py
 
 # Local development environment.
-.idea
+.idea/
 
