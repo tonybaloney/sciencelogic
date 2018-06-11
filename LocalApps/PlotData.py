@@ -7,6 +7,11 @@ from argparse import ArgumentParser
 
 data_columns = ['time', 'device', 'interface', 'interface_speed',
                 'sample_type', 'd_octets_in', 'd_octets_out']
+plot_style = {
+    'min': ["g:", "b:"],
+    'avg': ["g-", "b-"],
+    'max': ["g--", "b--"]
+}
 
 
 def generate_plots(data: pd.DataFrame, plot_min: bool = True,
@@ -20,14 +25,31 @@ def generate_plots(data: pd.DataFrame, plot_min: bool = True,
     :param plot_max: If True, plot the max rates.
     :return: None.
     """
-    # for device_name in data.device.unique():
-    #     device_data = data.loc[data.loc[:, "device"] == device_name, :]
-    #     for interface_name in device_data.interface.unique():
-    #         interface_data = device_data.loc[device_data.loc[:, "interface"] == interface_name, :]
+    plot_set = set()
+    if plot_min:
+        plot_set.add('min')
+    if plot_avg:
+        plot_set.add('avg')
+    if plot_max:
+        plot_set.add('max')
+
     for device_name, device_data in data.groupby("device"):
         for interface_name, interface_data in device_data.groupby("interface"):
             print("{}:{}".format(device_name, interface_name))
-    pass
+            figure, axes = plt.subplots()
+            plt.title("Interface Utilization for {}:{}".format(
+                       device_name, interface_name))
+            for data_type in ['max', 'avg', 'min']:
+                if data_type in plot_set:
+                    interface_data.loc[interface_data['sample_type'] == data_type,
+                                       ['time', 'd_octets_in', 'd_octets_out']]\
+                        .rename({'d_octets_in': '{} octets in'.format(data_type),
+                                 'd_octets_out': '{} octets out'.format(data_type)},
+                                axis=1)\
+                        .plot(ax=axes,
+                              kind="line",
+                              style=plot_style[data_type])
+            plt.show()
 
 
 def get_rate_data(filename: str) -> pd.DataFrame:
