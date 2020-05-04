@@ -58,7 +58,10 @@ class Presentation(object):
             response
         :type  hide_options: ``bool``
 
-        :rtype: ``dict``
+        :returns: Data is returned in a ``dict`` which has the keys
+            representing the indexes, and values a further ``dict`` which
+            has the timestamps as keys and datapoints as values.
+        :rtype: ``dict`` of ``dict``
 
         .. note:: if fetch_indexes is enabled, idx.max and idx.list will be
             ignored.
@@ -90,6 +93,4 @@ class Presentation(object):
             url = self.data_uri[:self.data_uri.find('?')]
 
         data = self._client.get(url, params=params)
-        # TODO: '0' is just one of the available collection indices.
-        # May be all of them should be returned here?
-        return data.json().get('data', {}).get('0', {})
+        return data.json().get('data', {})
