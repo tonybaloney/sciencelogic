@@ -1,7 +1,6 @@
 from sciencelogic.performance_data import PerformanceData
 
 
-
 class Device(object):
     """
     Represents a monitored device

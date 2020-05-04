@@ -3,12 +3,10 @@ from requests.auth import HTTPBasicAuth
 from sciencelogic.device import Device
 import requests
 
-requests.packages.urllib3.disable_warnings()
-
 
 class Client(object):
     def __init__(self, username, password, uri,
-                 auto_connect=True, verify_ssl=False):
+                 auto_connect=True, verify_ssl=True):
         """
         Instantiate a EM7 Client API
 
@@ -23,6 +21,9 @@ class Client(object):
 
         :param auto_connect: Try an connect and get API data when initializing
         :param auto_connect: ``bool``
+
+        :param verify_ssl: Verify endpoint SSL certificates (Default True)
+        :param verify_ssl: ``bool``
         """
         self.username = username
         self.password = password
@@ -62,7 +63,7 @@ class Client(object):
 
         :param details: Get the details of the devices
         :type  details: ``bool``
-        
+
         :param limit: Number of devices to retrieve
         :type details: ``int``
 

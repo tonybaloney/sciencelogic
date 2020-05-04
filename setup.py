@@ -11,7 +11,7 @@ try: # for pip >= 10
     from pip._internal.req import parse_requirements
 except ImportError: # for pip <= 9.0.3
     from pip.req import parse_requirements
-    
+
 import uuid
 
 
@@ -22,17 +22,12 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    str(r.req) for r in parse_requirements('requirements_dev.txt',
-                                           session=uuid.uuid1())
-]
-
-test_requirements = [
-    # TODO: put package test requirements here
+    'requests', 'pyyaml'
 ]
 
 setup(
     name='sciencelogic',
-    version='0.5.0',
+    version='0.6.0',
     description="Client library for sciencelogic EM7",
     long_description=readme + '\n\n' + history,
     author="Anthony Shaw",
@@ -62,5 +57,4 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
-    tests_require=test_requirements
 )
